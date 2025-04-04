@@ -20,7 +20,8 @@ if (process.argv[1] === fileURLToPath(import.meta.url)) {
   */
 
   // Modify the line of code BELOW to run a different exercise
-  exercise_01();
+  
+    exercise_01();
   // Modify the line of code ABOVE to run a different exercise
 }
 
@@ -41,10 +42,11 @@ function exercise_01() {
   */
   // CODE IN THE OPEN LINES BELOW
 
-  const placeholder = "Delete this line and code here";
-
+    function calculateArea(radius) {
+    return PI * radius * radius; 
+    console.log("The area of the circle is:", area);
   // CODE IN THE OPEN LINES ABOVE
-}
+   }
 
 function exercise_02() {
   /* 
@@ -61,8 +63,11 @@ function exercise_02() {
   */
   // CODE IN THE OPEN LINES BELOW
 
-  const placeholder = "Delete this line and code here";
+  const calculateArea = function (radius) {
+    return Math.PI * radius * radius;
+  };
 
+  console.log(calculateArea(20));
   // CODE IN THE OPEN LINES ABOVE
 }
 
@@ -78,8 +83,11 @@ function exercise_03() {
   */
   // CODE IN THE OPEN LINES BELOW
 
-  const placeholder = "Delete this line and code here";
-
+  const calculateAreaArrow = (radius) => {
+    return Math.PI * radius * radius;
+  };
+  const calculateAreaSimplerArrow = (radius) => Math.PI * radius * radius;
+  console.log(calculateAreaArrow(6)); // Outputs: 78.53981633974483
   // CODE IN THE OPEN LINES ABOVE
 }
 
@@ -99,7 +107,19 @@ function exercise_04() {
   */
   // CODE IN THE OPEN LINES BELOW
 
-  const placeholder = "Delete this line and code here";
+  function isValidEmail(email) {
+    const atSymbolIndex = email.indexOf("@");
+    if (atSymbolIndex === -1) return false;
+
+    const dotIndex = email.indexOf(".", atSymbolIndex);
+    if (dotIndex === -1) return false;
+
+    return true;
+  }
+
+  // Usage:
+  console.log(isValidEmail("testing@example.com")); // Outputs: true
+  console.log(isValidEmail(".invalid-@email")); // Outputs: false
 
   // CODE IN THE OPEN LINES ABOVE
 }
@@ -120,7 +140,13 @@ function exercise_05() {
   */
   // CODE IN THE OPEN LINES BELOW
 
-  const placeholder = "Delete this line and code here";
+  function greet(name, greeting = "Hello") {
+    return `${greeting}, ${name}!`;
+  }
+
+  // Usage:
+  console.log(greet("Alex")); // Outputs: Hello, Alex!
+  console.log(greet("Bunny", "Good morning")); // Outputs: Good morning, Bunny!
 
   // CODE IN THE OPEN LINES ABOVE
 }
@@ -152,6 +178,17 @@ function exercise_06() {
     Write what you think will happen IN THIS COMMENT BLOCK.
     Then explain why the code behaved as it did.
 
+
+    The first console.log will output "Local" because it refers to the local variable 
+  defined inside the showMessage function. The second console.log will output "Global" 
+  because it refers to the global variable defined outside the function.
+  
+  The code behaves this way due to variable scoping in JavaScript. The `let` keyword creates 
+  a block-scoped variable, meaning that the `message` variable inside the `showMessage` 
+  function is different from the `message` variable in the global scope. When `showMessage` 
+  is called, it logs the local `message`, which is "Local". After that, the global `message` 
+  is logged, which is "Global".
+
   */
 }
 
@@ -174,11 +211,34 @@ function exercise_07() {
   */
   // CODE IN THE OPEN LINES BELOW
 
-  const placeholder = "Delete this line and code here";
+  function incrementCounter() {
+    let counter = 0; // Declare and initialize 'counter' inside the function
+    counter += 1; // Increment 'counter' by 1
+    console.log(counter); // Log the value of 'counter'
+}
+
+incrementCounter(); // Outputs: 1
+incrementCounter(); // Outputs: 1
+
+// Attempting to access 'counter' outside the function
+console.log(counter); // ReferenceError: counter is not defined
 
   // CODE IN THE OPEN LINES ABOVE
 }
+/*   Explanation:
 
+1. Each time `incrementCounter` is called, the variable `counter` is declared and initialized to `0` inside the function. 
+   Since `counter` is a local variable (declared with `let`), it is scoped to the function and is re-created every time the function is called.
+
+2. When the function is executed:
+   - `counter` is set to `0`.
+   - It is incremented by `1`, making its value `1`.
+   - The value `1` is logged to the console.
+
+3. Since the `counter` variable is re-declared and re-initialized to `0` every time the function is called, the output will always be `1` for each call to `incrementCounter`.
+
+4. The `counter` variable cannot be accessed outside the function because it is defined within the function's local scope. 
+   Attempting to access it outside the function results in a `ReferenceError` because the variable does not exist in the global scope.                      */
 function exercise_08() {
   /* 
    
@@ -193,7 +253,19 @@ function exercise_08() {
   */
   // CODE IN THE OPEN LINES BELOW
 
-  const placeholder = "Delete this line and code here";
+  function makeMultiplier(multiplier) {
+    return function (number) {
+        return number * multiplier; // Multiplies the input number by the multiplier
+    };
+}
+
+// Usage:
+const double = makeMultiplier(4); // Creates a function that multiplies by 4
+console.log(double(8)); // Outputs: 32
+
+// Real world example
+const costOfLivingAdjustment = makeMultiplier(1.03); // Creates a function for a 3% increase
+console.log(costOfLivingAdjustment(50000)); // Outputs: 51500
 
   // CODE IN THE OPEN LINES ABOVE
 }
@@ -220,7 +292,26 @@ function exercise_09() {
   */
   // CODE IN THE OPEN LINES BELOW
 
-  const placeholder = "Delete this line and code here";
+  function factorial(n) {
+    // Check for negative input
+    if (n < 0) {
+        console.log("Bad number input");
+        return; // Exit the function to prevent infinite loop
+    }
+    
+    // Base case: factorial of 0 is 1
+    if (n === 0) {
+        return 1;
+    }
+    
+    // Recursive case: n! = n * (n - 1)!
+    return n * factorial(n - 1);
+}
+
+// Example usage:
+console.log(factorial(5)); // Outputs: 120
+console.log(factorial(0)); // Outputs: 1
+factorial(-3); // Outputs: "Bad number input"
 
   // CODE IN THE OPEN LINES ABOVE
 }
@@ -238,8 +329,12 @@ function exercise_10() {
   */
   // CODE IN THE OPEN LINES BELOW
 
-  const placeholder = "Delete this line and code here";
+   // Use forEach to iterate over the array and print each fruit
+    fruits.forEach(function(fruit) {
+    });
 
+    // Alternatively, using arrow function syntax
+    fruits.forEach(fruit => console.log(fruit));
   // CODE IN THE OPEN LINES ABOVE
 }
 
@@ -282,8 +377,12 @@ function exercise_12() {
   */
   // CODE IN THE OPEN LINES BELOW
 
-  const placeholder = "Delete this line and code here";
+ // Using reduce to calculate the sum of the array
+   const sum = numbers.reduce((accumulator, currentValue) => {
+   return accumulator + currentValue;
+  }, 0); // Initial value is set to 0
 
+   console.log(sum); // Outputs: 15
   // CODE IN THE OPEN LINES ABOVE
 }
 
@@ -304,7 +403,23 @@ function exercise_13() {
   */
   // CODE IN THE OPEN LINES BELOW
 
-  const placeholder = "Delete this line and code here";
+  function modifyPrimitive(primitive) {
+    primitive += 1;
+    console.log("Inside function:", primitive);
+  }
+
+  function modifyObject(obj) {
+    obj.value += 1;
+    console.log("Inside function:", obj.value);
+  }
+
+  let num = 5;
+  modifyPrimitive(num);
+  console.log("Outside function:", num); // Outputs: 5
+
+  let obj = { value: 5 };
+  modifyObject(obj);
+  console.log("Outside function:", obj.value); // Outputs: 6
 
   // CODE IN THE OPEN LINES ABOVE
 }
@@ -322,7 +437,33 @@ function exercise_14() {
   */
   // CODE IN THE OPEN LINES BELOW
 
-  const placeholder = "Delete this line and code here";
+  function addProperty(obj) {
+    obj.newProperty = "I am new!"; // Adds a new property to the object
+}
+
+const myObj = { existingProperty: "I exist" };
+
+console.log(myObj); // Outputs: { existingProperty: "I exist" }
+
+addProperty(myObj); // Calls the function to add a new property
+
+console.log(myObj); // Outputs: { existingProperty: "I exist", newProperty: "I am new!" }
+
+// Real world example
+function flagRentAsLate(obj) {
+    obj["late"] = true; // Adds a 'late' property to the rent object
+}
+
+const rentObj = {
+    monthlyPayment: 1200,
+    monthDue: "November",
+    dayDue: 1,
+    paid: false,
+};
+
+flagRentAsLate(rentObj); // Flags the rent as late
+
+console.log(rentObj); // Outputs: { monthlyPayment: 1200, monthDue: "November", dayDue: 1, paid: false, late: true }
 
   // CODE IN THE OPEN LINES ABOVE
 }
@@ -348,7 +489,17 @@ function exercise_15() {
   */
   // CODE IN THE OPEN LINES BELOW
 
-  const placeholder = "Delete this line and code here";
+  const user = [
+    { id: 1, name: "Alice" },
+    { id: 2, name: "Bob" },
+    { id: 3, name: "Charlie" }
+];
+
+// Use the find() method to locate the user with the name 'Bob'
+const userBob = users.find(user => user.name === 'Bob');
+
+// Print the user object to the console
+console.log(userBob);
 
   // CODE IN THE OPEN LINES ABOVE
 }
@@ -371,7 +522,10 @@ function exercise_16() {
   */
   // CODE IN THE OPEN LINES BELOW
 
-  const placeholder = "Delete this line and code here";
+   // Use Object.entries() to get an array of key-value pairs and iterate over them
+    Object.entries(person).forEach(([key, value]) => {
+    console.log(`${key}: ${value}`);
+    });
 
   // CODE IN THE OPEN LINES ABOVE
 }
@@ -390,7 +544,18 @@ function exercise_17() {
   */
   // CODE IN THE OPEN LINES BELOW
 
-  const placeholder = "Delete this line and code here";
+  function capitalizeStrings(strings) {
+    return strings.map(str => {
+        // Capitalize the first letter and make the rest lowercase
+        return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
+    });
+}
+
+// Example usage:
+const inputArray = ["hello", "world", "javaScript", "FUNCTIONS"];
+const capitalizedArray = capitalizeStrings(inputArray);
+
+console.log(capitalizedArray); // Outputs: ["Hello", "World", "Javascript", "Functions"]
 
   // CODE IN THE OPEN LINES ABOVE
 }
@@ -413,7 +578,15 @@ function exercise_18() {
   */
   // CODE IN THE OPEN LINES BELOW
 
-  const placeholder = "Delete this line and code here";
+  function power(base, exponent = 2) {
+    return Math.pow(base, exponent);
+}
+
+// Example usage:
+console.log(power(3));        // Outputs: 9 (3^2)
+console.log(power(2, 3));     // Outputs: 8 (2^3)
+console.log(power(5, 0));     // Outputs: 1 (5^0)
+console.log(power(4, 1));     // Outputs: 4 (4^1)
 
   // CODE IN THE OPEN LINES ABOVE
 }
@@ -434,7 +607,32 @@ function exercise_19() {
   */
   // CODE IN THE OPEN LINES BELOW
 
-  const placeholder = "Delete this line and code here";
+  (() => {
+    process.env.DB_PASSWORD = 12345;
+    process.env.APP_LANGUAGE = "en-US";
+    process.env.APP_VERSION = "DEVELOPMENT";
+
+    console.log("env vars inside the IIFE");
+    console.log("DB Password:", process.env.DB_PASSWORD);
+    console.log("App Language:", process.env.APP_LANGUAGE);
+    console.log(
+      "Version of app build currently running:",
+      process.env.APP_VERSION
+    );
+    console.log("--------------");
+  })();
+
+  console.log(
+    "But LOOK! I can access these env vars outside the IIFE now that they're set up"
+  );
+  console.log("DB Password:", process.env.DB_PASSWORD);
+  console.log("App Language:", process.env.APP_LANGUAGE);
+  console.log(
+    "Version of app build currently running:",
+    process.env.APP_VERSION
+  );
+  console.log("--------");
 
   // CODE IN THE OPEN LINES ABOVE
+}
 }
